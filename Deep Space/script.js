@@ -65,15 +65,34 @@ function makeBullet(){
 	let new_bullet = document.createElement('img');
 	new_bullet.src = 'sprites/bullet.png';
 	new_bullet.classList.add('bullet');
-	new_bullet.style.left = `$(xPos}px`;
-	new_bullet.style.top = `${yPos - 7}px`;
+	new_bullet.style.left = `$20px`;
+	new_bullet.style.top = `${yPos}px`;
 	return new_bullet;
 }
 
 function moveBullet(bullet){
+
+	let xPos = parseInt(window.getComputedStyle(bullet).getPropertyValue('left'));
+	function movediv(timestamp){
+		//destroy when offscreen
+		if(xPos >= 740)
+		{
+			bullet.style.display = 'none';
+		bullet.remove();
+		}else{
+			//otherwise keep moving
+			xPos += 5
+			bullet.style.left = `${xPos - 4}px`
+			requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
+		}
+	}
+	requestAnimationFrame(movediv)
+	/*
 	let interval = setInterval(() =>{
 		let xPos = parseInt(bullet.style.left);
-		let enemies = document.querySelecorAll(".enemy");
+		var adiv = document.getElementById('bullet')
+		var leftpos = 0
+		let enemies = document.querySelectorAll(".enemy");
 		enemies.forEach(enemy => {
 			if(collisionCheck(bullet,enemy)){
 				let explosion = new Audio('sounds/rumble.wav');
@@ -84,15 +103,19 @@ function moveBullet(bullet){
 			}
 		})
 		//destroy when offscreen
-		if(xPos == 760)
+		if(xPos >= 760)
 		{
 			bullet.style.display = 'none';
 			bullet.remove();
 		//otherwise keep moving
 		}else{
-			bullet.style.left = `${xPos + 4}px`
+			requestAnimationFrame(function(timestamp){
+				leftpos += 5
+				adiv.style.left = leftpos + 'px'
+			})
 		}
 	}, 10)
+	*/
 }
 
 //function creates enemies, selecting from 3 possible ones
@@ -111,6 +134,14 @@ function createEnemy()
 
 //function moves the enemies.
 function moveEnemy(enemy){
+	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'))
+	function movediv(timestamp){
+		xPos -= 5
+		enemy.style.left = `${xPos - 4}px`
+		requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
+	}
+	requestAnimationFrame(movediv)
+	/*
 	let interval = setInterval(() => {
 		let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'))
 		if(xPos <= 50){
@@ -119,6 +150,7 @@ function moveEnemy(enemy){
 			enemy.style.left = `${xPos - 4}px`
 		}
 	},30)
+	*/
 }
 
 function collisionCheck(bullet,enemy){
