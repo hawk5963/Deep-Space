@@ -1,0 +1,32 @@
+#game_area{
+	width: 760px;
+	height: 540px;
+	background-image: url('sprites/background.png');
+}
+
+#player{
+	width: 19px;
+	height: 17px;
+	position: relative;
+	left: 20px;
+	top: 200px;
+}
+
+.bullet{
+	width: 10px;
+	height: 10px;
+	position: relative;
+}
+
+.enemy{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+}
+
+.dead-enemy{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	opacity: 0;
+}
