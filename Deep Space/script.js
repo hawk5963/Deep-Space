@@ -86,37 +86,19 @@ function moveBullet(bullet){
 			bullet.style.left = `${xPos - 4}px`
 			requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
 		}
-	}
-	requestAnimationFrame(movediv)
-	/*
-	let interval = setInterval(() =>{
-		let xPos = parseInt(bullet.style.left);
-		var adiv = document.getElementById('bullet')
-		var leftpos = 0
+		//call collision
 		let enemies = document.querySelectorAll(".enemy");
 		enemies.forEach(enemy => {
 			if(collisionCheck(bullet,enemy)){
-				let explosion = new Audio('sounds/rumble.wav');
+				let explosion = new Audio('sound/rumble.flac');
 				explosion.play();
-				enemy.src = "images/explosion.png";
+				enemy.src = 'sprites/explosion.png';
 				enemy.classList.remove("enemy");
 				enemy.classList.add("dead-enemy");
 			}
 		})
-		//destroy when offscreen
-		if(xPos >= 760)
-		{
-			bullet.style.display = 'none';
-			bullet.remove();
-		//otherwise keep moving
-		}else{
-			requestAnimationFrame(function(timestamp){
-				leftpos += 5
-				adiv.style.left = leftpos + 'px'
-			})
-		}
-	}, 10)
-	*/
+	}
+	requestAnimationFrame(movediv)
 }
 
 //function creates enemies, selecting from 3 possible ones
@@ -143,20 +125,9 @@ function moveEnemy(enemy){
 		requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
 	}
 	requestAnimationFrame(movediv)
-	/*
-	let interval = setInterval(() => {
-		let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'))
-		if(xPos <= 50){
-			enemy.remove();
-		}else{
-			enemy.style.left = `${xPos - 4}px`
-		}
-	},30)
-	*/
 }
 
 function collisionCheck(bullet,enemy){
-	//crude collision box
 	let bLeft = parseInt(bullet.style.left);
 	let bTop = parseInt(bullet.style.top);
 	let bBottom = bTop - 20;
@@ -164,10 +135,9 @@ function collisionCheck(bullet,enemy){
 	let eBottom = eTop - 30;
 	let eLeft = parseInt(enemy.style.left);
 	//if the boxes overlap
-	if(bLeft != 340 && laserLeft + 40 >= eLeft)
+	if(bLeft != 340 && bLeft + 40 >= eLeft)
 	{
 		if((bTop <= eTop && bTop >= eBottom)){
-			console.log("ka fucking boom");
 			return true;
 		}else{
 			return false;
