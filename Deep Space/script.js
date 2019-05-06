@@ -2,6 +2,7 @@ const player = document.getElementById("player");
 const game_area = document.getElementById("game_area");
 const enemies = ['sprites/enemy1.png', 'sprites/enemy2.png', 'sprites/enemy3.png'];
 
+var intervalID = window.setInterval(createEnemy, 850);
 //a function for having the player move upwards
 function Up(){
 		let topPos = window.getComputedStyle(player).getPropertyValue('top');
@@ -129,6 +130,7 @@ function createEnemy()
 	new_enemy.style.left = '560px';
 	new_enemy.style.top = `${Math.floor(Math.random() * 500) + 50}px`;
 	game_area.appendChild(new_enemy);
+	console.log("creating");
 	moveEnemy(new_enemy);
 }
 
@@ -165,6 +167,7 @@ function collisionCheck(bullet,enemy){
 	if(bLeft != 340 && laserLeft + 40 >= eLeft)
 	{
 		if((bTop <= eTop && bTop >= eBottom)){
+			console.log("ka fucking boom");
 			return true;
 		}else{
 			return false;
