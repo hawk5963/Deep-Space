@@ -26,7 +26,7 @@ li a:hover {
 	float: left;
 }
 #game_area{
-	width: auto;
+	width: 760px;
 	height: 540px;
 	background-image: url('sprites/background.png');
 }
