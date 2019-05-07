@@ -110,7 +110,7 @@ function createEnemy()
 	new_enemy.src = sprite;
 	new_enemy.classList.add('enemy');
 	new_enemy.style.left = '560px';
-	new_enemy.style.top = `${Math.floor(Math.random() * 500) + 50}px`;
+	new_enemy.style.top = `${Math.floor(Math.random() * 490) + 50}px`;
 	game_area.appendChild(new_enemy);
 	console.log("creating");
 	moveEnemy(new_enemy);
