@@ -7,13 +7,13 @@ var intervalID = window.setInterval(createEnemy, 850);
 function Up(){
 		let topPos = window.getComputedStyle(player).getPropertyValue('top');
 		//if the player goes to the top of the screen, don't let them go further
-		if(player.style.top == "0px")
+		if(player.style.top == "11px")
 		{
 			return;
 		}else{
 			let position = parseInt(topPos);
 			//might be a better idea to use requestAnimationFrame() if we want cleaner movement.
-			position = position - 5;
+			position = position - 7;
 			player.style.top = `${position}px`;
 		}
 }
@@ -22,12 +22,12 @@ function Up(){
 function Down(){
 	let topPos = window.getComputedStyle(player).getPropertyValue('top');
 	//don't let the player go offscreen too low either
-	if(player.style.top == "510px")
+	if(player.style.top == "431px")
 	{
 		return;
 	}else{
 		let position = parseInt(topPos);
-		position = position + 5;
+		position = position + 7;
 		player.style.top = `${position}px`;
 	}
 }
@@ -68,12 +68,14 @@ function makeBullet(){
 	new_bullet.classList.add('bullet');
 	new_bullet.style.left = `$20px`;
 	new_bullet.style.top = `${yPos}px`;
+	new_bullet.style.bottom = `${yPos - 20}px`;
 	return new_bullet;
 }
 
 function moveBullet(bullet){
 
 	let xPos = parseInt(window.getComputedStyle(bullet).getPropertyValue('left'));
+	let yPos = parseInt(window.getComputedStyle(bullet).getPropertyValue('top'));
 	function movediv(timestamp){
 		//destroy when offscreen
 		if(xPos >= 740)
@@ -82,14 +84,16 @@ function moveBullet(bullet){
 		bullet.remove();
 		}else{
 			//otherwise keep moving
-			xPos += 5
-			bullet.style.left = `${xPos - 4}px`
+			xPos += 5;
+			bullet.style.left = `${xPos}px`
+			bullet.style.top = `${yPos}px`
+			bullet.style.bottom = `${yPos - 20}px`
 			requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
 		}
 		//call collision
 		let enemies = document.querySelectorAll(".enemy");
 		enemies.forEach(enemy => {
-			if(collisionCheck(bullet,enemy)){
+			if(collisionCheck(bullet,enemy) == true){
 				let explosion = new Audio('sound/rumble.flac');
 				explosion.play();
 				enemy.src = 'sprites/explosion.png';
@@ -113,16 +117,18 @@ function createEnemy()
 	new_enemy.style.left = '560px';
 	new_enemy.style.top = `${Math.floor(Math.random() * 500) + 50}px`;
 	game_area.appendChild(new_enemy);
-	console.log("creating");
 	moveEnemy(new_enemy);
 }
 
 //function moves the enemies.
 function moveEnemy(enemy){
-	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'))
+	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'));
+	let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('top'));
 	function movediv(timestamp){
 		xPos -= 5
-		enemy.style.left = `${xPos - 4}px`
+		enemy.style.left = `${xPos}px`
+		enemy.style.top = `${yPos}px`
+		enemy.style.bottom = `${yPos - 37}px`
 		requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
 	}
 	requestAnimationFrame(movediv)
@@ -135,12 +141,19 @@ function collisionCheck(bullet,enemy){
 	let eTop = parseInt(enemy.style.top);
 	let eBottom = eTop - 30;
 	let eLeft = parseInt(enemy.style.left);
-	//if the boxes overlap
-	if(bLeft != 340 && bLeft + 40 >= eLeft)
-	{
-		if((bTop <= eTop && bTop >= eBottom)){
+	//if the boxes overlap in the y coordinates
+	if((bTop <= eTop && bBottom >= eBottom)){
+		if(bLeft >= eLeft && bLeft <= (eLeft + 100)){
+			console.log("kaboom");
+			console.log("eTop: " + eTop);
+			console.log("eBottom: " + eBottom);
+			console.log("eLeft: " + eLeft);
+			console.log("bTop: " + bTop);
+			console.log("bBottom: " + bBottom);
+			console.log("bLeft: " + bLeft);
 			return true;
-		}else{
+		}
+		else{
 			return false;
 		}
 	}else{
