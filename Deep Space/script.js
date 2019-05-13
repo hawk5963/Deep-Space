@@ -1,7 +1,7 @@
 const player = document.getElementById("player");
 const game_area = document.getElementById("game_area");
 const enemies = ['sprites/enemy1.png', 'sprites/enemy2.png', 'sprites/enemy3.png'];
-
+const counter = document.querySelector('#counter span')
 var intervalID = window.setInterval(createEnemy, 850);
 //a function for having the player move upwards
 function Up(){
@@ -95,6 +95,7 @@ function moveBullet(bullet){
 				enemy.src = 'sprites/explosion.png';
 				enemy.classList.remove("enemy");
 				enemy.classList.add("dead-enemy");
+				counter.innerText = parseInt(counter.innerText) + 1;
 			}
 		})
 	}
@@ -110,7 +111,7 @@ function createEnemy()
 	new_enemy.src = sprite;
 	new_enemy.classList.add('enemy');
 	new_enemy.style.left = '560px';
-	new_enemy.style.top = `${Math.floor(Math.random() * 490) + 50}px`;
+	new_enemy.style.top = `${Math.floor(Math.random() * 500) + 50}px`;
 	game_area.appendChild(new_enemy);
 	console.log("creating");
 	moveEnemy(new_enemy);
@@ -146,3 +147,47 @@ function collisionCheck(bullet,enemy){
 		return false;
 	}
 }
+/*
+function UpdateUserStats(username,password,highscores,enemiesDestroyed,SurvivalTime){
+	var sqlite3 = require('sqlite3').verbose();
+
+	var db = userData.sqlite3;
+	db.run("INSERT INTO userData(username,password,highscores,enemiesDestroyed,SurvivalTime)");
+	db.run("VALUES('" + username + "','" + password + "'," + highscores + "," + enemiesDestroyed + "," + SurvivalTime + ");");
+	db.close();
+}
+
+function AddUser(username,password,){
+	var sqlite3 = require('sqlite3').verbose();
+
+	var db = userData.sqlite3;
+	db.run("INSERT INTO userData(username,password,highscores,enemiesDestroyed,SurvivalTime)");
+	db.run("VALUES('" + username + "','" + password + "',0,0,0);");
+	db.close();
+}
+
+function checkForUser(username,password){
+	var sqlite3 = require('sqlite3').verbose();
+	var db = userData.sqlite3;
+	db.run("SELECT username FROM userData WHERE username == ")
+}
+*/
+// Get the modal
+var loginBox = document.getElementById('loginButton');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == loginBox) {
+    loginBox.style.display = "none";
+  }
+}
+
+var SignUpBox = document.getElementById('signUpButton');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == SignUpBox) {
+    SignUpBox.style.display = "none";
+  }
+}
+
