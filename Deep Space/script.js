@@ -84,7 +84,7 @@ function moveBullet(bullet){
 			bullet.remove();
 		}else{
 			//otherwise keep moving
-			xPos = xPos + 5;
+			xPos = xPos + 10;
 			bullet.style.left = `${xPos + 5}px`
 			bullet.style.top = `${yPos}px`
 			bullet.style.bottom = `${yPos - 20}px`
@@ -232,16 +232,16 @@ window.onclick = function(event) {
 function validatePassword() {
 	var uName1 = document.getElementById("username1").value;
 	var uName2 = document.getElementById("username2").value;
-	
+
 	if (uName1 == "") {
 		alert("Must fill out username!");
 		return false;
 	}
-	
+
 		if (uName2 == "") {
 		alert("Must fill out username!");
 		return false;
 	}
-	
+
 }
 
