@@ -137,10 +137,29 @@ function moveEnemy(enemy){
 function collisionCheck(bullet,enemy){
 	let bLeft = parseInt(bullet.style.left);
 	let bTop = parseInt(bullet.style.top);
-	let bBottom = bTop - 20;
+	let bBottom = bTop + 20;
 	let eTop = parseInt(enemy.style.top);
-	let eBottom = eTop - 30;
+	let eBottom = eTop + 30;
+
+    let eheight = 30;
+    let bheight = 20;
+
+    let width = 100;
+
 	let eLeft = parseInt(enemy.style.left);
+//b = rect1 ; e = rect2
+
+    if (bLeft < eLeft + width &&
+    bLeft + width > eLeft &&
+    bTop < eTop + eheight &&
+    bTop + bheight > eTop) {
+        console.log("colliding!");
+        return true;
+    }
+
+    return false;
+}
+/*
 	//if the boxes overlap in the y coordinates
 	if((bTop <= eTop && bBottom >= eBottom)){
 		if(bLeft >= eLeft && bLeft <= (eLeft + 100)){
@@ -159,7 +178,8 @@ function collisionCheck(bullet,enemy){
 	}else{
 		return false;
 	}
-}
+
+}*/
 /*
 function UpdateUserStats(username,password,highscores,enemiesDestroyed,SurvivalTime){
 	var sqlite3 = require('sqlite3').verbose();
