@@ -39,6 +39,14 @@ li a:hover {
 	top: 200px;
 }
 
+#player2{
+	width: 19px;
+	height: 17px;
+	position: relative;
+	left: 20px;
+	top: 100px;
+}
+
 .bullet{
 	width: 10px;
 	height: 10px;

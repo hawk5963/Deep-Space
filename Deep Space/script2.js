@@ -1,5 +1,5 @@
 const player = document.getElementById("player");
-//const player2 = document.getElementById("player2");
+const player2 = document.getElementById("player2");
 const game_area = document.getElementById("game_area");
 const enemies = ['sprites/enemy1.png', 'sprites/enemy2.png', 'sprites/enemy3.png'];
 const counter = document.querySelector('#counter span')
@@ -76,7 +76,6 @@ function makeBullet(){
 	return new_bullet;
 }
 
-/*
 //a function for having the player move upwards
 function Up2(){
 		let topPos = window.getComputedStyle(player2).getPropertyValue('top');
@@ -144,7 +143,7 @@ function makeBullet2(){
 	new_bullet.style.bottom = `${yPos - 20}px`;
 	return new_bullet;
 }
-*/
+
 function moveBullet(bullet){
 
 	let xPos = parseInt(window.getComputedStyle(bullet).getPropertyValue('left'));
