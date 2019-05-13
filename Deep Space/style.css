@@ -48,13 +48,13 @@ li a:hover {
 .enemy{
 	width: 20px;
 	height: 20px;
-	position: absolute;
+	position: relative;
 }
 
 .dead-enemy{
 	width: 20px;
 	height: 20px;
-	position: absolute;
+	position: relative;
 	opacity: 1;
 }
 
