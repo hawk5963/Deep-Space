@@ -229,3 +229,19 @@ window.onclick = function(event) {
   }
 }
 
+function validatePassword() {
+	var uName1 = document.getElementById("username1").value;
+	var uName2 = document.getElementById("username2").value;
+	
+	if (uName1 == "") {
+		alert("Must fill out username!");
+		return false;
+	}
+	
+		if (uName2 == "") {
+		alert("Must fill out username!");
+		return false;
+	}
+	
+}
+

@@ -27,18 +27,18 @@
 		  <span onclick="document.getElementById('loginButton').style.display='none'"class="close" title="Close Modal">&times;</span>
 
 		  <!-- Modal Content -->
-		  <form class="modal-content animate" action="/action_page.php">
+		  <form class="modal-content animate">
 		    <div>
 		      <img src="avatars/avatar2.jpg" alt="Avatar" class="avatar">
 		    </div>
 
 		    <div class="container">
-		    	<form action="/action_page.php">
+		    	<form>
 				  <b>Username:</b><br>
-				  <input type="text" name="Username" placeholder="Enter Username"><br>
+				  <input type="text" name="Username" placeholder="Enter Username" id = "username1"><br>
 				  <b>Password:</b><br>
-				  <input type="text" name="Password" placeholder="Enter Password"><br><br>
-				  <input type="submit" value="Login">
+				  <input type="text" name="Password" placeholder="Enter Password" id = "password1"><br><br>
+				  <input type="submit" value="Login" onclick="validatePassword()">
 				  <button type="button" onclick="document.getElementById('loginButton').style.display='none'" class="cancelbtn">Cancel</button>
 				</form>
 		    </div>
@@ -50,20 +50,20 @@
 		  <span onclick="document.getElementById('signUpButton').style.display='none'"class="close" title="Close Modal">&times;</span>
 
 		  <!-- Modal Content -->
-		  <form class="modal-content2 animate" action="/action_page.php">
+		  <form class="modal-content2 animate">
 		    <div>
 		      <img src="avatars/avatar1.jpg" alt="Avatar" class="avatar">
 		    </div>
 
 		    <div class="container">
-		    	<form action="/action_page.php">
+		    	<form>
 				  <b>Username:</b><br>
-				  <input type="text" name="Username" placeholder="Enter Username"><br>
+				  <input type="text" name="Username" placeholder="Enter Username" id = "username2"><br>
 				  <b>Password:</b><br>
-				  <input type="text" name="Password" placeholder="Enter Password"><br><br>
+				  <input type="text" name="Password" placeholder="Enter Password" id = "password2"><br><br>
 				  <b>Repeat Password:</b><br>
-				  <input type="text" name="Password" placeholder="Repeat Password"><br><br>
-				  <input type="submit" value="Sign Up">
+				  <input type="text" name="Password" placeholder="Repeat Password" id = "password3"><br><br>
+				  <input type="submit" value="Sign Up" onclick="validatePassword()">
 				  <button type="button" onclick="document.getElementById('signUpButton').style.display='none'" class="cancelbtn">Cancel</button>
 				</form>
 		    </div>

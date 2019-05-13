@@ -29,6 +29,7 @@
 }
 
  ul {
+  width: 100%;
   padding: 0;               /*pushes the text together more */
   margin: 0;                /*gets rid ot the tiny space on the top */
   overflow: hidden;         /*provides the bar for the navigation*/
