@@ -81,11 +81,11 @@ function moveBullet(bullet){
 		if(xPos >= 740)
 		{
 			bullet.style.display = 'none';
-		bullet.remove();
+			bullet.remove();
 		}else{
 			//otherwise keep moving
-			xPos += 5;
-			bullet.style.left = `${xPos}px`
+			xPos = xPos + 5;
+			bullet.style.left = `${xPos + 5}px`
 			bullet.style.top = `${yPos}px`
 			bullet.style.bottom = `${yPos - 20}px`
 			requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
@@ -116,8 +116,17 @@ function createEnemy()
 	new_enemy.classList.add('enemy');
 	new_enemy.style.left = '560px';
 	new_enemy.style.top = `${Math.floor(Math.random() * 500) + 50}px`;
-	game_area.appendChild(new_enemy);
-	moveEnemy(new_enemy);
+	new_enemy.style.bottom = new_enemy.style.top + 37;
+	//make sure the enemy spawned within the correct y value, otherwise call spawn again. Not a great way but it was easier than tweaking the random number generator.
+	//and this doesn't work. This is ridiculous.
+	if(new_enemy.style.top < 30 || new_enemy.style.top > 431)
+	{
+		createEnemy();
+	}
+	else{
+		game_area.appendChild(new_enemy);
+		moveEnemy(new_enemy);
+	}
 }
 
 //function moves the enemies.
@@ -125,10 +134,19 @@ function moveEnemy(enemy){
 	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'));
 	let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('top'));
 	function movediv(timestamp){
-		xPos -= 5
-		enemy.style.left = `${xPos}px`
+		if(xPos < 0)
+		{
+			enemy.style.display = 'none';
+			enemy.remove();
+		}
+		if(yPos < 30 || yPos > 431)
+		{
+			enemy.style.display = 'none';
+			enemy.remove();
+		}
+		xPos = xPos - 5;
+		enemy.style.left = `${xPos - 5}px`
 		enemy.style.top = `${yPos}px`
-		enemy.style.bottom = `${yPos - 37}px`
 		requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
 	}
 	requestAnimationFrame(movediv)
@@ -137,49 +155,36 @@ function moveEnemy(enemy){
 function collisionCheck(bullet,enemy){
 	let bLeft = parseInt(bullet.style.left);
 	let bTop = parseInt(bullet.style.top);
-	let bBottom = bTop + 20;
+	//let bBottom = bTop + 20;
 	let eTop = parseInt(enemy.style.top);
-	let eBottom = eTop + 30;
-
-    let eheight = 30;
-    let bheight = 20;
-
-    let width = 100;
-
 	let eLeft = parseInt(enemy.style.left);
+	//let eBottom = eTop + 30;
+
+    let eHeight = 30;
+    let bHeight = 20;
+
+    let eWidth = 100;
+    let bWidth = 25;
 //b = rect1 ; e = rect2
 
-    if (bLeft < eLeft + width &&
-    bLeft + width > eLeft &&
-    bTop < eTop + eheight &&
-    bTop + bheight > eTop) {
+	//all of the numbers check out, something else is broken with hit detection. JS positioning sucks
+    if (bLeft < (eLeft + eWidth) &&
+    (bLeft + bWidth) > eLeft &&
+    bTop < (eTop + eHeight) &&
+    (bTop + bHeight) > eTop) {
         console.log("colliding!");
+        console.log("eTop: " + eTop);
+		console.log("eBottom: " + (eTop + eHeight));
+		console.log("eLeft: " + eLeft);
+		console.log("bTop: " + bTop);
+		console.log("bBottom: " + (bTop + bHeight));
+		console.log("bLeft: " + bLeft);
         return true;
-    }
-
-    return false;
-}
-/*
-	//if the boxes overlap in the y coordinates
-	if((bTop <= eTop && bBottom >= eBottom)){
-		if(bLeft >= eLeft && bLeft <= (eLeft + 100)){
-			console.log("kaboom");
-			console.log("eTop: " + eTop);
-			console.log("eBottom: " + eBottom);
-			console.log("eLeft: " + eLeft);
-			console.log("bTop: " + bTop);
-			console.log("bBottom: " + bBottom);
-			console.log("bLeft: " + bLeft);
-			return true;
-		}
-		else{
-			return false;
-		}
-	}else{
+    }else{
 		return false;
 	}
 
-}*/
+}
 /*
 function UpdateUserStats(username,password,highscores,enemiesDestroyed,SurvivalTime){
 	var sqlite3 = require('sqlite3').verbose();
