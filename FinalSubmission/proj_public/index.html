@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+	<meta http-equiv = "X-UA-Compatible" content = "ie="edge>
+	<link rel="stylesheet" href = "style.css">
+	<script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script> 
+       <script type="application/javascript" src="scripts/client.js"></script>
+	<title>Deep Space</title>
+</head>
+
+	<body onload="Init();">
+		<div id = "counter">
+		<h2>Score: <span>0</span></h2>
+		</div>
+		<div id = "app">
+		<ul>
+	  		<li><a href="index.html">Game Page</a></li>
+			<li><a href="index.html">User Stats Page</a></li>
+			<li><a href="about.html">About the Project</a></li>
+			<div class = "login">
+				<li> <button onclick="document.getElementById('loginButton').style.display='block'" value ="/SignIn" v-model="action_type" >Login</button> </li>
+				<li> <button onclick="document.getElementById('signUpButton').style.display='block'" value ="/SignUp" v-model="action_type" >Sign Up</button> </li>
+			</div>
+		</ul>
+		<div>
+		<!-- The Modal -->
+		<div id="loginButton" class="loginBox">
+		  <span onclick="document.getElementById('loginButton').style.display='none'"class="close" title="Close Modal">&times;</span>
+
+		  <!-- Modal Content -->
+		  <form class="modal-content animate">
+		    <div>
+		      <img src="avatars/avatar2.jpg" alt="Avatar" class="avatar">
+		    </div>
+
+		    <div class="container">
+		    	<form>
+				  <b>Username:</b><br>
+				  <input type="text" v-model="username" placeholder="Enter Username"><br>
+				  <b>Password:</b><br>
+				  <input type="text" v-model="password" placeholder="Enter Password"><br>
+				  <button type="button" @click="SignIn">Log In</button>
+				  <button type="button" onclick="document.getElementById('loginButton').style.display='none'" class="cancelbtn">Cancel</button>
+				</form>
+		    </div>
+
+		  </form>
+		</div>
+
+		<div id="signUpButton" class="SignUpBox">
+		  <span onclick="document.getElementById('signUpButton').style.display='none'"class="close" title="Close Modal">&times;</span>
+
+		  <!-- Modal Content -->
+		  <form class="modal-content2 animate">
+		    <div>
+		      <img src="avatars/avatar1.jpg" alt="Avatar" class="avatar">
+		    </div>
+
+		    <div class="container">
+		    	<form>
+				  <b>Username:</b><br>
+				  <input type="text" name="Username" placeholder="Enter Username" id = "username2"><br>
+				  <b>Password:</b><br>
+				  <input type="text" name="Password" placeholder="Enter Password" id = "password2"><br><br>
+				  <b>Repeat Password:</b><br>
+				  <input type="text" name="Password" placeholder="Repeat Password" id = "password3"><br><br>
+				  <input type="submit" value="Sign Up" onclick="validatePassword()">
+				  <button type="button" onclick="document.getElementById('signUpButton').style.display='none'" class="cancelbtn">Cancel</button>
+				</form>
+		    </div>
+
+		  </form>
+		</div>
+
+		<div id = 'game_area'>
+			<img id = 'player' src = "sprites/player.png">
+			<!-- <img id = 'player2' src = "sprites/player2.png"> -->
+		</div>
+
+		  </div>
+		<script type = "text/javascript" src = "scripts/script.js"></script>
+	</body>
+</html>
