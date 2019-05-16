@@ -11,7 +11,7 @@
 	<title>Deep Space</title>
 </head>
 
-	<body>
+	<body onload="Init();">
 		<div id = "counter">
 		<h2>Score: <span>0</span></h2>
 		</div>
@@ -21,8 +21,8 @@
 			<li><a href="index.html">User Stats Page</a></li>
 			<li><a href="about.html">About the Project</a></li>
 			<div class = "login">
-				<li> <button onclick="document.getElementById('loginButton').style.display='block'" value ="/SignIn" v-model="action_type" >Login</button> </li>
-				<li> <button onclick="document.getElementById('signUpButton').style.display='block'" value ="/SignUp" v-model="action_type" >Sign Up</button> </li>
+				<li> <button onclick="document.getElementById('loginButton').style.display='block'">Login</button> </li>
+				<li> <button onclick="document.getElementById('signUpButton').style.display='block'">Sign Up</button> </li>
 			</div>
 		</ul>
 		<div>
@@ -62,12 +62,12 @@
 		    <div class="container">
 		    	<form>
 				  <b>Username:</b><br>
-				  <input type="text" name="Username" placeholder="Enter Username" id = "username2"><br>
+				  <input type="text" v-model="username" placeholder="Enter Username"><br>
 				  <b>Password:</b><br>
-				  <input type="text" name="Password" placeholder="Enter Password" id = "password2"><br><br>
+				  <input type="text" v-model="password" placeholder="Enter Password"><br>
 				  <b>Repeat Password:</b><br>
-				  <input type="text" name="Password" placeholder="Repeat Password" id = "password3"><br><br>
-				  <input type="submit" value="Sign Up" onclick="validatePassword()">
+				  <input type="text" v-model="password2" placeholder="Enter Password"><br>
+				  <button type="button" @click="SignUp">Sign Up</button>
 				  <button type="button" onclick="document.getElementById('signUpButton').style.display='none'" class="cancelbtn">Cancel</button>
 				</form>
 		    </div>

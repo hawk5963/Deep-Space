@@ -248,22 +248,4 @@ function checkForUser(username,password){
 	db.run("SELECT username FROM userData WHERE username == ")
 }
 */
-// Get the modal
-var loginBox = document.getElementById('loginButton');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == loginBox) {
-    loginBox.style.display = "none";
-  }
-}
-
-var SignUpBox = document.getElementById('signUpButton');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == SignUpBox) {
-    SignUpBox.style.display = "none";
-  }
-}
 

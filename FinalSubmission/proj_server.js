@@ -9,7 +9,7 @@ var port = 8006;
 var db_filename = path.join(__dirname, 'db', 'user.sqlite3');
 var public_dir = path.join(__dirname, 'proj_public');
 
-var db = new sqlite3.Database(db_filename, sqlite3.OPEN_READONLY, (err) => {
+var db = new sqlite3.Database(db_filename, (err) => {
     if (err) {
         console.log('Error opening ' + db_filename);
     }
@@ -23,18 +23,53 @@ app.get('/SignIn', (req, res) => {
     var query = decodeURI(req_url.query).split('/');
     var username = query[0];
     var password = query[1];
-    db.get('SELECT * FROM user_data WHERE Username LIKE ?', username, (err, rows) => {
+    db.all('SELECT * FROM user_data WHERE Username LIKE ?', username, (err, rows) => {
         if (err) {
             console.log(err);
         }
         else {
-	    console.log("your results are " + JSON.stringify(rows));
             res.writeHead(200, {'Content-Type': 'application/json'});
             res.write(JSON.stringify(rows));
             res.end();
         }
     });
 });
+
+app.get('/CheckUserName', (req, res) => {
+    var req_url = url.parse(req.url);
+    var query = decodeURI(req_url.query).split('/');
+    var username = query[0];
+    var password = query[1];
+    var password2 = query[2];
+    db.all('SELECT * FROM user_data WHERE Username LIKE ?', username, (err, rows) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify(rows));
+            res.end();
+        }
+    });
+});
+
+app.get('/SignUp', (req, res) => {
+    var req_url = url.parse(req.url);
+    var query = decodeURI(req_url.query).split('/');
+    var username = query[0];
+    var password = query[1];
+    var password2 = query[2];
+    db.run('INSERT INTO user_data (Username,Password,HighestScore) VALUES(?,?,0)', username,password, (err, rows) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+	    res.end();
+        }
+    });
+});
+
+
 
 app.use(express.static(public_dir));
 var server = app.listen(port);
