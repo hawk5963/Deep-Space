@@ -9,9 +9,9 @@
         <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
        <script type="application/javascript" src="scripts/client.js"></script>
 	<title>Deep Space</title>
-</head>
+</head onload="Init();">
 
-	<body onload="Init();">
+	<body>
 		<div id = "counter">
 		<h2>Score: <span>0</span></h2>
 		</div>
@@ -56,8 +56,69 @@
 		  <!-- Modal Content -->
 		  <form class="modal-content2 animate">
 		    <div>
-		      <img src="avatars/avatar1.jpg" alt="Avatar" class="avatar">
-		    </div>
+		      <h><b>Select Avatar</b></h>
+		      <table>
+            		<tr>
+                	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+               	 	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+                	     </td>
+                	     <td>                   
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+			     <td>                   
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+            	      </tr>
+		      <tr>
+                	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+               	 	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+                	     </td>
+                	     <td>                   
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+			     <td>                   
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+            	      </tr>
+
+           	      <tr>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>                  
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+
+            	     </tr>
+		     <tr>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>                  
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+            	     </tr>
+
+     		   </table>		    
+		 </div>
 
 		    <div class="container">
 		    	<form>
@@ -80,6 +141,27 @@
 			<!-- <img id = 'player2' src = "sprites/player2.png"> -->
 		</div>
 
+		<div class = "leaderboard">
+		<button type="button" @click="Update">Leaderboard</button>
+		<table>
+  		     <tr>
+   			 <th>UserName</th>
+    			<th>Score</th>
+  		     </tr>
+ 		     <tr>
+    			<td>Jill</td>
+    			<td>50</td>
+  		    </tr>
+	
+		    <div v-for="item in leaderboard">
+			<tr>
+    			<td>{{item.username}}</td>
+    			<td>{{item.highscore}}</td>
+  		    </tr>
+		    </div>
+
+		</table>
+		</div>
 		  </div>
 		<script type = "text/javascript" src = "scripts/script.js"></script>
 	</body>

@@ -215,8 +215,6 @@ function allOgre()
 			game_over.style.top = `$250px`;
 			game_area.appendChild(game_over);
 			game_over.addEventListener("click", refresh);
-			//send to client.js when game ends
-			onEnd(counter.innerText);
 			clearInterval(interval);
 		}, 1000);
 	}
@@ -225,29 +223,4 @@ function refresh()
 {
 	window.location.href = "index.html";
 }
-/*
-function UpdateUserStats(username,password,highscores,enemiesDestroyed,SurvivalTime){
-	var sqlite3 = require('sqlite3').verbose();
-
-	var db = userData.sqlite3;
-	db.run("INSERT INTO userData(username,password,highscores,enemiesDestroyed,SurvivalTime)");
-	db.run("VALUES('" + username + "','" + password + "'," + highscores + "," + enemiesDestroyed + "," + SurvivalTime + ");");
-	db.close();
-}
-
-function AddUser(username,password,){
-	var sqlite3 = require('sqlite3').verbose();
-
-	var db = userData.sqlite3;
-	db.run("INSERT INTO userData(username,password,highscores,enemiesDestroyed,SurvivalTime)");
-	db.run("VALUES('" + username + "','" + password + "',0,0,0);");
-	db.close();
-}
-
-function checkForUser(username,password){
-	var sqlite3 = require('sqlite3').verbose();
-	var db = userData.sqlite3;
-	db.run("SELECT username FROM userData WHERE username == ")
-}
-*/
 

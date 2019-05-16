@@ -8,6 +8,7 @@ function Init() {
 	password: '',
 	password2: '',
 	highscore: 0,
+	leaderboard: {},
 	}
     });
 }
@@ -28,11 +29,6 @@ window.onclick = function(event) {
   if (event.target == SignUpBox) {
     SignUpBox.style.display = "none";
   }
-}
-
-function onEnd(score){
-	var userScore = score;
-	console.log(userScore);
 }
 
 function SignIn(event) {
@@ -63,13 +59,26 @@ function SignUp(event) {
 	    }else
 	    {
 		GetJson('/SignUp' + "?" + app.username + "/" + md5(app.password) + "/"+ app.password2).then((data) => {
-
+		    
 		});
 		var SignUpBox = document.getElementById('signUpButton');
 		SignUpBox.style.display = "none";
 	    }
         });
     }
+
+function SetImage(event) {
+    }
+
+function Update(event) {
+	console.log("We got to the update function");
+	GetJson('/Update').then((data) => {
+		app.leaderboard = data;	
+		console.log(data);	    
+        });
+
+    }
+
 
 function GetJson(url) {
     return new Promise((resolve, reject) => {
@@ -114,7 +123,7 @@ function md5(string) {
  function G(x,y,z) { return (x & z) | (y & (~z)); }
  function H(x,y,z) { return (x ^ y ^ z); }
  function I(x,y,z) { return (y ^ (x | (~z))); }
-
+ 
  function FF(a,b,c,d,x,s,ac) {
  a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
  return AddUnsigned(RotateLeft(a, s), b);

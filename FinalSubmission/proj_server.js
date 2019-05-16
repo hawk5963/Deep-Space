@@ -69,6 +69,20 @@ app.get('/SignUp', (req, res) => {
     });
 });
 
+app.get('/Update', (req, res) => {
+	console.log("We got to the update listener");
+    db.run('SELECT TOP 3 * FROM user_data', (err, row) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify(row));
+            res.end();
+        }
+    });
+});
+
 
 
 app.use(express.static(public_dir));

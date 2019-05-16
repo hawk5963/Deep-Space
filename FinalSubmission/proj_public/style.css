@@ -114,7 +114,7 @@ li a:hover {
   margin: 5px auto; /* 15% from the top and centered */
   border: 1px solid #888;
   width: 600px; /* Could be more or less, depending on screen size */
-  height: 500px;
+  height: 800px;
 }
 
 /* The Close Button */
@@ -167,3 +167,48 @@ input[type=text], input[type=password] {
   from {transform: scale(0)} 
   to {transform: scale(1)}
 }
+//avatars
+table {
+    border-spacing: 1rem;             /*spaces each cell of the table*/
+}
+
+td img {
+  /*scales the image in each cell */
+    width: 100%; 
+    height: auto;
+}
+
+.row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 25%;
+}
+//leaderboard
+.leaderboard table {
+  clear: both;
+  float: right;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 40%;
+  border: 1px solid #ddd;
+}
+
+.leaderboard th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+.leaderboard tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+
