@@ -215,6 +215,8 @@ function allOgre()
 			game_over.style.top = `$250px`;
 			game_area.appendChild(game_over);
 			game_over.addEventListener("click", refresh);
+			//send to client.js when game ends
+			onEnd(counter.innerText);
 			clearInterval(interval);
 		}, 1000);
 	}

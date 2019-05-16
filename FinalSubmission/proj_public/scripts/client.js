@@ -30,6 +30,11 @@ window.onclick = function(event) {
   }
 }
 
+function onEnd(score){
+	var userScore = score;
+	console.log(userScore);
+}
+
 function SignIn(event) {
        GetJson('/SignIn' + "?" + app.username + "/" + md5(app.password)).then((data) => {
 	    if(data.length == 0)
@@ -58,7 +63,7 @@ function SignUp(event) {
 	    }else
 	    {
 		GetJson('/SignUp' + "?" + app.username + "/" + md5(app.password) + "/"+ app.password2).then((data) => {
-		    
+
 		});
 		var SignUpBox = document.getElementById('signUpButton');
 		SignUpBox.style.display = "none";
@@ -109,7 +114,7 @@ function md5(string) {
  function G(x,y,z) { return (x & z) | (y & (~z)); }
  function H(x,y,z) { return (x ^ y ^ z); }
  function I(x,y,z) { return (y ^ (x | (~z))); }
- 
+
  function FF(a,b,c,d,x,s,ac) {
  a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
  return AddUnsigned(RotateLeft(a, s), b);

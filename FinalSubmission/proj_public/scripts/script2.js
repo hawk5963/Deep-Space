@@ -291,6 +291,7 @@ function allOgre()
 			game_over.style.left = `$250px`;
 			game_over.style.top = `$250px`;
 			game_area.appendChild(game_over);
+			onEnd(counter.innerText);
 			game_over.addEventListener("click", refresh);
 			clearInterval(interval);
 		}, 1000);
