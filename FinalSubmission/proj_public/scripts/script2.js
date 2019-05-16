@@ -1,23 +1,9 @@
 const player = document.getElementById("player");
-//const player2 = document.getElementById("player2");
+const player2 = document.getElementById("player2");
 const game_area = document.getElementById("game_area");
 const enemies = ['sprites/enemy1.png', 'sprites/enemy2.png', 'sprites/enemy3.png'];
 const counter = document.querySelector('#counter span')
-var over = 0;
-let game_start = document.createElement('img');
-let sprite = "sprites/gamestart.png";
-game_start.src = sprite;
-game_start.style.left = `$250px`;
-game_start.style.top = `$250px`;
-game_area.appendChild(game_start);
-game_start.addEventListener("click", start);
-var interval;
-function start()
-{
-	game_start.style.display = 'none';
-	interval = window.setInterval(createEnemy, 1600);
-	window.addEventListener("keydown", fly);
-}
+var intervalID = window.setInterval(createEnemy, 850);
 //a function for having the player move upwards
 function Up(){
 		let topPos = window.getComputedStyle(player).getPropertyValue('top');
@@ -67,6 +53,7 @@ function fly(event){
 		fire();
 	}
 }
+window.addEventListener("keydown", fly);
 
 //a function for firing the weapon
 function fire(){
@@ -80,6 +67,74 @@ function fire(){
 function makeBullet(){
 	let xPos = parseInt(window.getComputedStyle(player).getPropertyValue('left'));
 	let yPos = parseInt(window.getComputedStyle(player).getPropertyValue('top'));
+	let new_bullet = document.createElement('img');
+	new_bullet.src = 'sprites/bullet.png';
+	new_bullet.classList.add('bullet');
+	new_bullet.style.left = `$20px`;
+	new_bullet.style.top = `${yPos}px`;
+	new_bullet.style.bottom = `${yPos - 20}px`;
+	return new_bullet;
+}
+
+//a function for having the player move upwards
+function Up2(){
+		let topPos = window.getComputedStyle(player2).getPropertyValue('top');
+		//if the player goes to the top of the screen, don't let them go further
+		if(player2.style.top == "11px")
+		{
+			return;
+		}else{
+			let position = parseInt(topPos);
+			//might be a better idea to use requestAnimationFrame() if we want cleaner movement.
+			position = position - 7;
+			player2.style.top = `${position}px`;
+		}
+}
+
+//a function for having the player move down
+function Down2(){
+	let topPos = window.getComputedStyle(player2).getPropertyValue('top');
+	//don't let the player go offscreen too low either
+	if(player2.style.top == "431px")
+	{
+		return;
+	}else{
+		let position = parseInt(topPos);
+		position = position + 7;
+		player2.style.top = `${position}px`;
+	}
+}
+
+//a function to actually let the player move
+
+function fly2(event){
+	if(event.key == "w"){
+		//need to prevent default so our custom function runs instead
+		event.preventDefault();
+		Up2();
+	}else if(event.key == "s"){
+		event.preventDefault();
+		Down2();
+	}else if(event.key == "d")
+	{
+		event.preventDefault();
+		fire2();
+	}
+}
+window.addEventListener("keydown", fly2);
+
+//a function for firing the weapon
+function fire2(){
+	let bullet = makeBullet2();
+	game_area.appendChild(bullet);
+	let sfx = new Audio('sound/bullet.wav');
+	sfx.play();
+	moveBullet(bullet);
+}
+
+function makeBullet2(){
+	let xPos = parseInt(window.getComputedStyle(player2).getPropertyValue('left'));
+	let yPos = parseInt(window.getComputedStyle(player2).getPropertyValue('top'));
 	let new_bullet = document.createElement('img');
 	new_bullet.src = 'sprites/bullet.png';
 	new_bullet.classList.add('bullet');
@@ -116,7 +171,6 @@ function moveBullet(bullet){
 				enemy.src = 'sprites/explosion.png';
 				enemy.classList.remove("enemy");
 				enemy.classList.add("dead-enemy");
-				enemy.dead = true;
 				counter.innerText = parseInt(counter.innerText) + 1;
 			}
 		})
@@ -130,8 +184,6 @@ function createEnemy()
 	let new_enemy = document.createElement('img');
 	//randomly select which enemy
 	let sprite = enemies[Math.floor(Math.random()*enemies.length)];
-	let dead = false;
-	new_enemy.dead = false;
 	new_enemy.src = sprite;
 	new_enemy.classList.add('enemy');
 	new_enemy.style.left = '560px';
@@ -154,12 +206,10 @@ function moveEnemy(enemy){
 	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'));
 	let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('top'));
 	function movediv(timestamp){
-		if(xPos < 0){
-			if(Array.from(enemy.classList).includes("dead-enemy")){
-				enemy.remove();
-			}else{
-				allOgre();
-			}
+		if(xPos < 0)
+		{
+			enemy.style.display = 'none';
+			enemy.remove();
 		}
 		if(yPos < 30 || yPos > 431)
 		{
@@ -185,7 +235,7 @@ function collisionCheck(bullet,enemy){
     let eHeight = 30;
     let bHeight = 20;
 
-    let eWidth = 25;
+    let eWidth = 100;
     let bWidth = 25;
 //b = rect1 ; e = rect2
 
@@ -194,39 +244,30 @@ function collisionCheck(bullet,enemy){
     (bLeft + bWidth) > eLeft &&
     bTop < (eTop + eHeight) &&
     (bTop + bHeight) > eTop) {
+        console.log("colliding!");
+        console.log("eTop: " + eTop);
+		console.log("eBottom: " + (eTop + eHeight));
+		console.log("eLeft: " + eLeft);
+		console.log("bTop: " + bTop);
+		console.log("bBottom: " + (bTop + bHeight));
+		console.log("bLeft: " + bLeft);
         return true;
     }else{
 		return false;
 	}
 
 }
-function allOgre()
+
+function pause()
 {
-	if(over == 0)
-	{
-		over = 1;
-		clearInterval(createEnemy);
-		let enemies = document.querySelectorAll(".enemy");
-		enemies.forEach(enemy => enemy.remove());
-		let bullets = document.querySelectorAll(".bullet");
-		bullets.forEach(bullet => bullet.remove())
-		setTimeout(() => {
-			player.remove();
-			//add game over
-			let game_over = document.createElement('img');
-			let sprite = "sprites/gameover.png";
-			game_over.src = sprite;
-			game_over.style.left = `$250px`;
-			game_over.style.top = `$250px`;
-			game_area.appendChild(game_over);
-			game_over.addEventListener("click", refresh);
-			clearInterval(interval);
-		}, 1000);
-	}
-}
-function refresh()
-{
-	window.location.href = "index.html";
+    if (!paused)
+    {
+        paused = true;
+    } else if (paused)
+    {
+       paused= false;
+    }
+
 }
 /*
 function UpdateUserStats(username,password,highscores,enemiesDestroyed,SurvivalTime){
@@ -270,5 +311,21 @@ window.onclick = function(event) {
   if (event.target == SignUpBox) {
     SignUpBox.style.display = "none";
   }
+}
+
+function validatePassword() {
+	var uName1 = document.getElementById("username1").value;
+	var uName2 = document.getElementById("username2").value;
+
+	if (uName1 == "") {
+		alert("Must fill out username!");
+		return false;
+	}
+
+		if (uName2 == "") {
+		alert("Must fill out username!");
+		return false;
+	}
+
 }
 
