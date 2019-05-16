@@ -15,7 +15,7 @@ var interval;
 function start()
 {
 	game_start.style.display = 'none';
-	interval = window.setInterval(createEnemy, 1600);
+	interval = window.setInterval(createEnemy, 2400);
 	window.addEventListener("keydown", fly);
 }
 //a function for having the player move upwards
@@ -154,7 +154,7 @@ function moveEnemy(enemy){
 	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'));
 	let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('top'));
 	function movediv(timestamp){
-		if(xPos < 0){
+		if(xPos < -100){
 			if(Array.from(enemy.classList).includes("dead-enemy")){
 				enemy.remove();
 			}else{

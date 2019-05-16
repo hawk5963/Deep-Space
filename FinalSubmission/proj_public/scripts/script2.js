@@ -3,7 +3,21 @@ const player2 = document.getElementById("player2");
 const game_area = document.getElementById("game_area");
 const enemies = ['sprites/enemy1.png', 'sprites/enemy2.png', 'sprites/enemy3.png'];
 const counter = document.querySelector('#counter span')
-var intervalID = window.setInterval(createEnemy, 850);
+var over = 0;
+let game_start = document.createElement('img');
+let sprite = "sprites/gamestart.png";
+game_start.src = sprite;
+game_start.style.left = `$250px`;
+game_start.style.top = `$250px`;
+game_area.appendChild(game_start);
+game_start.addEventListener("click", start);
+var interval;
+function start()
+{
+	game_start.style.display = 'none';
+	interval = window.setInterval(createEnemy, 1600);
+	window.addEventListener("keydown", fly);
+}
 //a function for having the player move upwards
 function Up(){
 		let topPos = window.getComputedStyle(player).getPropertyValue('top');
@@ -206,10 +220,12 @@ function moveEnemy(enemy){
 	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'));
 	let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('top'));
 	function movediv(timestamp){
-		if(xPos < 0)
-		{
-			enemy.style.display = 'none';
-			enemy.remove();
+		if(xPos < -100){
+			if(Array.from(enemy.classList).includes("dead-enemy")){
+				enemy.remove();
+			}else{
+				allOgre();
+			}
 		}
 		if(yPos < 30 || yPos > 431)
 		{
@@ -244,13 +260,6 @@ function collisionCheck(bullet,enemy){
     (bLeft + bWidth) > eLeft &&
     bTop < (eTop + eHeight) &&
     (bTop + bHeight) > eTop) {
-        console.log("colliding!");
-        console.log("eTop: " + eTop);
-		console.log("eBottom: " + (eTop + eHeight));
-		console.log("eLeft: " + eLeft);
-		console.log("bTop: " + bTop);
-		console.log("bBottom: " + (bTop + bHeight));
-		console.log("bLeft: " + bLeft);
         return true;
     }else{
 		return false;
@@ -268,6 +277,35 @@ function pause()
        paused= false;
     }
 
+}
+function allOgre()
+{
+	if(over == 0)
+	{
+		over = 1;
+		clearInterval(createEnemy);
+		let enemies = document.querySelectorAll(".enemy");
+		enemies.forEach(enemy => enemy.remove());
+		let bullets = document.querySelectorAll(".bullet");
+		bullets.forEach(bullet => bullet.remove())
+		setTimeout(() => {
+			player.remove();
+			player2.remove();
+			//add game over
+			let game_over = document.createElement('img');
+			let sprite = "sprites/gameover.png";
+			game_over.src = sprite;
+			game_over.style.left = `$250px`;
+			game_over.style.top = `$250px`;
+			game_area.appendChild(game_over);
+			game_over.addEventListener("click", refresh);
+			clearInterval(interval);
+		}, 1000);
+	}
+}
+function refresh()
+{
+	window.location.href = "twoplayer.html";
 }
 /*
 function UpdateUserStats(username,password,highscores,enemiesDestroyed,SurvivalTime){
