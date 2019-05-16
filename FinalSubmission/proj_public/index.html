@@ -9,9 +9,10 @@
         <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
        <script type="application/javascript" src="scripts/client.js"></script>
 	<title>Deep Space</title>
-</head onload="Init();">
+</head>
 
-	<body>
+	<body onload="Init();">
+		
 		<div id = "counter">
 		<h2>Score: <span>0</span></h2>
 		</div>
@@ -140,29 +141,23 @@
 			<img id = 'player' src = "sprites/player.png">
 			<!-- <img id = 'player2' src = "sprites/player2.png"> -->
 		</div>
-
+		<script type = "text/javascript" src = "scripts/script.js"></script>
 		<div class = "leaderboard">
-		<button type="button" @click="Update">Leaderboard</button>
+		<button type="button" @click="Leaderboard">Leaderboard</button>
 		<table>
   		     <tr>
    			 <th>UserName</th>
     			<th>Score</th>
-  		     </tr>
- 		     <tr>
-    			<td>Jill</td>
-    			<td>50</td>
+  		     </tr>    
+		    <tr v-for="leaderboard in leaderboards">
+    			<td>{{leaderboard.Username}}</td>
+    			<td>{{leaderboard.HighestScore}}</td>
   		    </tr>
-	
-		    <div v-for="item in leaderboard">
-			<tr>
-    			<td>{{item.username}}</td>
-    			<td>{{item.highscore}}</td>
-  		    </tr>
-		    </div>
+		    
 
 		</table>
 		</div>
 		  </div>
-		<script type = "text/javascript" src = "scripts/script.js"></script>
+		
 	</body>
 </html>

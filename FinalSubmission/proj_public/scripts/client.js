@@ -8,7 +8,7 @@ function Init() {
 	password: '',
 	password2: '',
 	highscore: 0,
-	leaderboard: {},
+	leaderboards: {},
 	}
     });
 }
@@ -33,6 +33,17 @@ window.onclick = function(event) {
 function onEnd(score){
 	var userScore = score;
 	console.log(userScore);
+	if(app.username === "")
+	{
+		alert("You are not signed in, please sign in to have your highscores count.");
+	}
+	else
+	{
+	    GetJson('/Update' + "?" +  userScore + "/" + app.username).then((data) => {
+		          
+	     });
+	}
+	
 }
 function SignIn(event) {
        GetJson('/SignIn' + "?" + app.username + "/" + md5(app.password)).then((data) => {
@@ -41,7 +52,7 @@ function SignIn(event) {
 		alert("Username doesn't exist please try again.");
 	    } else if(md5(app.password) !== data[0].Password)
 	    {
-		alert("Inncorrect password for the given username.Please try again.")
+		alert("Inncorrect password for the given username.Please try again.");
 	    } else
 	    {
 		app.highscore = data[0].HighestScore;
@@ -73,11 +84,14 @@ function SignUp(event) {
 function SetImage(event) {
     }
 
-function Update(event) {
-	console.log("We got to the update function");
-	GetJson('/Update').then((data) => {
-		app.leaderboard = data;	
-		console.log(data);	    
+function Leaderboard(event) {
+	GetJson('/Leaderboard').then((data) => {
+		data.sort(function(a,b) {
+		    return b.HighestScore - a.HighestScore;
+		});
+		var numberOfScores;
+		numberOfScores = Math.min(data.length,4);
+		app.leaderboards = data.slice(0,numberOfScores);
         });
 
     }

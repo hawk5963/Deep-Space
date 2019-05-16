@@ -70,8 +70,22 @@ app.get('/SignUp', (req, res) => {
 });
 
 app.get('/Update', (req, res) => {
-	console.log("We got to the update listener");
-    db.run('SELECT TOP 3 * FROM user_data', (err, row) => {
+    var req_url = url.parse(req.url);
+    var query = decodeURI(req_url.query).split('/');
+    var highscore = query[0];
+    var username = query[1];
+    db.run('UPDATE user_data SET HighestScore = ?  Where Username = ?',highscore,username,(err, row) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.end();
+        }
+    });
+});
+
+app.get('/Leaderboard', (req, res) => {
+    db.all('SELECT * FROM user_data', (err, row) => {
         if (err) {
             console.log(err);
         }
@@ -82,7 +96,6 @@ app.get('/Update', (req, res) => {
         }
     });
 });
-
 
 
 app.use(express.static(public_dir));

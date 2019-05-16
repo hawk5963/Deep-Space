@@ -9,8 +9,9 @@ let sprite = "sprites/gamestart.png";
 game_start.src = sprite;
 game_start.style.left = `$250px`;
 game_start.style.top = `$250px`;
-game_area.appendChild(game_start);
 game_start.addEventListener("click", start);
+game_area.appendChild(game_start);
+
 var interval;
 function start()
 {
