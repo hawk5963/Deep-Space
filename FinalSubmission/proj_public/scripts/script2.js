@@ -201,10 +201,8 @@ function createEnemy()
 	new_enemy.src = sprite;
 	new_enemy.classList.add('enemy');
 	new_enemy.style.left = '560px';
-	new_enemy.style.top = `${Math.floor(Math.random() * 500) + 50}px`;
+	new_enemy.style.top = `${Math.floor(Math.random() * 450) + 1}px`;
 	new_enemy.style.bottom = new_enemy.style.top + 37;
-	//make sure the enemy spawned within the correct y value, otherwise call spawn again. Not a great way but it was easier than tweaking the random number generator.
-	//and this doesn't work. This is ridiculous.
 	if(new_enemy.style.top < 30 || new_enemy.style.top > 431)
 	{
 		createEnemy();
@@ -220,20 +218,15 @@ function moveEnemy(enemy){
 	let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('left'));
 	let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('top'));
 	function movediv(timestamp){
-		if(xPos < -100){
+		if(xPos < 0){
 			if(Array.from(enemy.classList).includes("dead-enemy")){
 				enemy.remove();
 			}else{
 				allOgre();
 			}
 		}
-		if(yPos < 30 || yPos > 431)
-		{
-			enemy.style.display = 'none';
-			enemy.remove();
-		}
-		xPos = xPos - 5;
-		enemy.style.left = `${xPos - 5}px`
+		xPos = xPos - 4;
+		enemy.style.left = `${xPos - 4}px`
 		enemy.style.top = `${yPos}px`
 		requestAnimationFrame(movediv) // call requestAnimationFrame again to animate next frame
 	}
