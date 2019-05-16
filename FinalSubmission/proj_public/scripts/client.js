@@ -30,7 +30,10 @@ window.onclick = function(event) {
     SignUpBox.style.display = "none";
   }
 }
-
+function onEnd(score){
+	var userScore = score;
+	console.log(userScore);
+}
 function SignIn(event) {
        GetJson('/SignIn' + "?" + app.username + "/" + md5(app.password)).then((data) => {
 	    if(data.length == 0)
