@@ -149,7 +149,7 @@
 		    <tr v-for="leaderboard in leaderboards">
     			<td>{{leaderboard.Username}}</td>
     			<td>{{leaderboard.HighestScore}}</td>
-			<td><img src={{leaderboard.Avatar}} class="hover-shadow"></td>
+			<td><img v-bind:src="leaderboard.Avatar" class="hover-shadow" id = "avatarImage"></td>
   		    </tr>
 		    
 

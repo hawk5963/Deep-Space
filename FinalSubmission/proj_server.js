@@ -59,7 +59,7 @@ app.get('/SignUp', (req, res) => {
     var username = query[0];
     var password = query[1];
     var password2 = query[2];
-    var avatar = query[3];
+    var avatar = query[3] + "/" + query[4];
     db.run('INSERT INTO user_data (Username,Password,HighestScore,Avatar) VALUES(?,?,0,?)', username,password,avatar, (err, rows) => {
         if (err) {
             console.log(err);
