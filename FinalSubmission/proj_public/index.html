@@ -14,7 +14,7 @@
 	<body onload="Init();">
 		
 		<div id = "counter">
-		<h2>Score: <span>0</span></h2>
+			<h2>Score: <span>0</span></h2>
 		</div>
 		<div id = "app">
 		<ul>
@@ -26,7 +26,7 @@
 				<li> <button onclick="document.getElementById('signUpButton').style.display='block'">Sign Up</button> </li>
 			</div>
 		</ul>
-		<div>
+		
 		<!-- The Modal -->
 		<div id="loginButton" class="loginBox">
 		  <span onclick="document.getElementById('loginButton').style.display='none'"class="close" title="Close Modal">&times;</span>
@@ -137,11 +137,7 @@
 		  </form>
 		</div>
 
-		<div id = 'game_area'>
-			<img id = 'player' src = "sprites/player.png">
-			<!-- <img id = 'player2' src = "sprites/player2.png"> -->
-		</div>
-		<script type = "text/javascript" src = "scripts/script.js"></script>
+		
 		<div class = "leaderboard">
 		<button type="button" @click="Leaderboard">Leaderboard</button>
 		<table>
@@ -157,7 +153,11 @@
 
 		</table>
 		</div>
-		  </div>
-		
+	</div>
+	<div id = 'game_area'>
+			<img id = 'player' src = "sprites/player.png">
+			<!-- <img id = 'player2' src = "sprites/player2.png"> -->
+		</div>
+		<script type = "text/javascript" src = "scripts/script.js"></script>
 	</body>
 </html>

@@ -39,9 +39,12 @@ function onEnd(score){
 	}
 	else
 	{
-	    GetJson('/Update' + "?" +  userScore + "/" + app.username).then((data) => {
-		          
-	     });
+		if(app.highscore < score)
+		{
+	    	     GetJson('/Update' + "?" +  userScore + "/" + app.username).then((data) => {
+		 
+	     	     });
+		}
 	}
 	
 }
