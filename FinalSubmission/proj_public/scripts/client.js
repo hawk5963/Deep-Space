@@ -8,6 +8,7 @@ function Init() {
 	password: '',
 	password2: '',
 	highscore: 0,
+	avatar: '',
 	leaderboards: {},
 	}
     });
@@ -85,6 +86,9 @@ function SignUp(event) {
     }
 
 function SetImage(event) {
+	console.log(app.avatar);
+	var SignUpBox = document.getElementById('signUpButton');
+	SignUpBox.style.display = "none";
     }
 
 function Leaderboard(event) {
