@@ -6,7 +6,7 @@ var sqlite3 = require('sqlite3');
 var app = express();
 var port = 8006;
 
-var db_filename = path.join(__dirname, 'db', 'user.sqlite3');
+var db_filename = path.join(__dirname, 'db', 'test.sqlite3');
 var public_dir = path.join(__dirname, 'proj_public');
 
 var db = new sqlite3.Database(db_filename, (err) => {
@@ -59,7 +59,8 @@ app.get('/SignUp', (req, res) => {
     var username = query[0];
     var password = query[1];
     var password2 = query[2];
-    db.run('INSERT INTO user_data (Username,Password,HighestScore) VALUES(?,?,0)', username,password, (err, rows) => {
+    var avatar = query[3];
+    db.run('INSERT INTO user_data (Username,Password,HighestScore,Avatar) VALUES(?,?,0,?)', username,password,avatar, (err, rows) => {
         if (err) {
             console.log(err);
         }

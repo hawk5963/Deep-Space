@@ -60,6 +60,7 @@ function SignIn(event) {
 	    } else
 	    {
 		app.highscore = data[0].HighestScore;
+		app.avatar = data[0].Avatar;
 		var loginBox = document.getElementById('loginButton');
 		loginBox.style.display = "none";
 	    }
@@ -67,7 +68,7 @@ function SignIn(event) {
     }
 
 function SignUp(event) {
-       GetJson('/CheckUsername' + "?" + app.username + "/" + md5(app.password) + "/"+ app.password2).then((data) => {
+       GetJson('/CheckUsername' + "?" + app.username + "/" + md5(app.password) + "/"+ app.password2 ).then((data) => {
 	    if(app.password !== app.password2)
 	    {
 		alert("Password does not match Repeat Password, Please try again");
@@ -76,7 +77,7 @@ function SignUp(event) {
 		alert("Username already exist, please try again.");
 	    }else
 	    {
-		GetJson('/SignUp' + "?" + app.username + "/" + md5(app.password) + "/"+ app.password2).then((data) => {
+		GetJson('/SignUp' + "?" + app.username + "/" + md5(app.password) + "/"+ app.password2 + "/" + app.avatar).then((data) => {
 		    
 		});
 		var SignUpBox = document.getElementById('signUpButton');
@@ -85,10 +86,69 @@ function SignUp(event) {
         });
     }
 
-function SetImage(event) {
+function SetImage1(event) {
+	app.avatar = "avatars/avatar1.jpg";
 	console.log(app.avatar);
-	var SignUpBox = document.getElementById('signUpButton');
-	SignUpBox.style.display = "none";
+    }
+function SetImage2(event) {
+	app.avatar = "avatars/avatar2.jpg";
+	console.log(app.avatar);
+    }
+function SetImage3(event) {
+	app.avatar = "avatars/avatar3.jpg";
+	console.log(app.avatar);
+    }
+function SetImage4(event) {
+	app.avatar = "avatars/avatar4.jpg";
+	console.log(app.avatar);
+    }
+function SetImage5(event) {
+	app.avatar = "avatars/avatar5.jpg";
+	console.log(app.avatar);
+    }
+function SetImage6(event) {
+	app.avatar = "avatars/avatar6.jpg";
+	console.log(app.avatar);
+    }
+function SetImage7(event) {
+	app.avatar = "avatars/avatar7.jpg";
+	console.log(app.avatar);
+    }
+function SetImage8(event) {
+	app.avatar = "avatars/avatar8.jpg";
+	console.log(app.avatar);
+    }
+function SetImage9(event) {
+	app.avatar = "avatars/avatar9.jpg";
+	console.log(app.avatar);
+    }
+function SetImage10(event) {
+	app.avatar = "avatars/avatar10.jpg";
+	console.log(app.avatar);
+    }
+function SetImage11(event) {
+	app.avatar = "avatars/avatar11.jpg";
+	console.log(app.avatar);
+    }
+function SetImage12(event) {
+	app.avatar = "avatars/avatar12.jpg";
+	console.log(app.avatar);
+    }
+function SetImage13(event) {
+	app.avatar = "avatars/avatar13.jpg";
+	console.log(app.avatar);
+    }
+function SetImage14(event) {
+	app.avatar = "avatars/avatar14.jpg";
+	console.log(app.avatar);
+    }
+function SetImage15(event) {
+	app.avatar = "avatars/avatar15.jpg";
+	console.log(app.avatar);
+    }
+function SetImage16(event) {
+	app.avatar = "avatars/avatar16.jpg";
+	console.log(app.avatar);
     }
 
 function Leaderboard(event) {

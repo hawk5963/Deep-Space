@@ -61,60 +61,60 @@
 		      <table>
             		<tr>
                 	     <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" value = "avatar1" v-model = "avatar" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage1"><img src="avatars/avatar1.jpg" value = "avatar1" v-model = "avatar" class="hover-shadow"></button>
                		     </td>
                	 	     <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage2"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
                 	     </td>
                 	     <td>                   
-                   		 <button type="button" @click="SetImage"><img src="avatars/avatar3.jpg" class="hover-shadow"></button>
+                   		 <button type="button" @click="SetImage3"><img src="avatars/avatar3.jpg" class="hover-shadow"></button>
                		     </td>
 			     <td>                   
-                   		 <button type="button" @click="SetImage"><img src="avatars/avatar4.jpg" class="hover-shadow"></button>
+                   		 <button type="button" @click="SetImage4"><img src="avatars/avatar4.jpg" class="hover-shadow"></button>
                		     </td>
             	      </tr>
 		      <tr>
                 	     <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar5.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage5"><img src="avatars/avatar5.jpg" class="hover-shadow"></button>
                		     </td>
                	 	     <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar6.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage6"><img src="avatars/avatar6.jpg" class="hover-shadow"></button>
                 	     </td>
                 	     <td>                   
-                   		 <button type="button" @click="SetImage"><img src="avatars/avatar7.jpg" class="hover-shadow"></button>
+                   		 <button type="button" @click="SetImage7"><img src="avatars/avatar7.jpg" class="hover-shadow"></button>
                		     </td>
 			     <td>                   
-                   		 <button type="button" @click="SetImage"><img src="avatars/avatar8.jpg" class="hover-shadow"></button>
+                   		 <button type="button" @click="SetImage8"><img src="avatars/avatar8.jpg" class="hover-shadow"></button>
                		     </td>
             	      </tr>
 
            	      <tr>
 			    <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar9.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage9"><img src="avatars/avatar9.jpg" class="hover-shadow"></button>
                 	    </td>
                 	    <td>                  
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar10.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage10"><img src="avatars/avatar10.jpg" class="hover-shadow"></button>
                 	    </td>
                 	    <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar11.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage11"><img src="avatars/avatar11.jpg" class="hover-shadow"></button>
                		    </td>
 			    <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar12.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage12"><img src="avatars/avatar12.jpg" class="hover-shadow"></button>
                		    </td>
 
             	     </tr>
 		     <tr>
 			    <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar13.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage13"><img src="avatars/avatar13.jpg" class="hover-shadow"></button>
                 	    </td>
                 	    <td>                  
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar14.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage14"><img src="avatars/avatar14.jpg" class="hover-shadow"></button>
                 	    </td>
                 	    <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar15.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage15"><img src="avatars/avatar15.jpg" class="hover-shadow"></button>
                		    </td>
 			    <td>
-                    		<button type="button" @click="SetImage"><img src="avatars/avatar16.jpg" class="hover-shadow"></button>
+                    		<button type="button" @click="SetImage16"><img src="avatars/avatar16.jpg" class="hover-shadow"></button>
                		    </td>
             	     </tr>
 
@@ -148,6 +148,7 @@
 		    <tr v-for="leaderboard in leaderboards">
     			<td>{{leaderboard.Username}}</td>
     			<td>{{leaderboard.HighestScore}}</td>
+			<td><img src={{leaderboard.Avatar}} class="hover-shadow"></td>
   		    </tr>
 		    
 
