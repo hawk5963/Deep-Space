@@ -5,12 +5,18 @@
 	<meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
 	<meta http-equiv = "X-UA-Compatible" content = "ie="edge>
 	<link rel="stylesheet" href = "style.css">
+	<script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+       <script type="application/javascript" src="scripts/client.js"></script>
 	<title>Deep Space</title>
 </head>
 
-	<body>
-		<div id = "counter"><h2>Score: <span>0</span></h2></div>
-		<div>
+	<body onload="Init();">
+
+		<div id = "counter">
+			<h2>Score: <span>0</span></h2>
+		</div>
+		<div id = "app">
 		<ul>
 	  		<li><a href="index.html">Game Page</a></li>
 			<li><a href="index.html">User Stats Page</a></li>
@@ -20,7 +26,7 @@
 				<li> <button onclick="document.getElementById('signUpButton').style.display='block'">Sign Up</button> </li>
 			</div>
 		</ul>
-		<div>
+
 		<!-- The Modal -->
 		<div id="loginButton" class="loginBox">
 		  <span onclick="document.getElementById('loginButton').style.display='none'"class="close" title="Close Modal">&times;</span>
@@ -34,10 +40,10 @@
 		    <div class="container">
 		    	<form>
 				  <b>Username:</b><br>
-				  <input type="text" name="Username" placeholder="Enter Username" id = "username1"><br>
+				  <input type="text" v-model="username" placeholder="Enter Username"><br>
 				  <b>Password:</b><br>
-				  <input type="text" name="Password" placeholder="Enter Password" id = "password1"><br><br>
-				  <input type="submit" value="Login" onclick="validatePassword()">
+				  <input type="text" v-model="password" placeholder="Enter Password"><br>
+				  <button type="button" @click="SignIn">Log In</button>
 				  <button type="button" onclick="document.getElementById('loginButton').style.display='none'" class="cancelbtn">Cancel</button>
 				</form>
 		    </div>
@@ -51,18 +57,79 @@
 		  <!-- Modal Content -->
 		  <form class="modal-content2 animate">
 		    <div>
-		      <img src="avatars/avatar1.jpg" alt="Avatar" class="avatar">
-		    </div>
+		      <h><b>Select Avatar</b></h>
+		      <table>
+            		<tr>
+                	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+               	 	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+                	     </td>
+                	     <td>
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+			     <td>
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+            	      </tr>
+		      <tr>
+                	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+               	 	     <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+                	     </td>
+                	     <td>
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+			     <td>
+                   		 <button type="button" @click="SetImage"><img src="avatars/avatar2.jpg" class="hover-shadow"></button>
+               		     </td>
+            	      </tr>
+
+           	      <tr>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+
+            	     </tr>
+		     <tr>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+                	    </td>
+                	    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+			    <td>
+                    		<button type="button" @click="SetImage"><img src="avatars/avatar1.jpg" class="hover-shadow"></button>
+               		    </td>
+            	     </tr>
+
+     		   </table>
+		 </div>
 
 		    <div class="container">
 		    	<form>
 				  <b>Username:</b><br>
-				  <input type="text" name="Username" placeholder="Enter Username" id = "username2"><br>
+				  <input type="text" v-model="username" placeholder="Enter Username"><br>
 				  <b>Password:</b><br>
-				  <input type="text" name="Password" placeholder="Enter Password" id = "password2"><br><br>
+				  <input type="text" v-model="password" placeholder="Enter Password"><br>
 				  <b>Repeat Password:</b><br>
-				  <input type="text" name="Password" placeholder="Repeat Password" id = "password3"><br><br>
-				  <input type="submit" value="Sign Up" onclick="validatePassword()">
+				  <input type="text" v-model="password2" placeholder="Enter Password"><br>
+				  <button type="button" @click="SignUp">Sign Up</button>
 				  <button type="button" onclick="document.getElementById('signUpButton').style.display='none'" class="cancelbtn">Cancel</button>
 				</form>
 		    </div>
@@ -70,12 +137,27 @@
 		  </form>
 		</div>
 
-		<div id = 'game_area'>
+
+		<div class = "leaderboard">
+		<button type="button" @click="Leaderboard">Leaderboard</button>
+		<table>
+  		     <tr>
+   			 <th>UserName</th>
+    			<th>Score</th>
+  		     </tr>
+		    <tr v-for="leaderboard in leaderboards">
+    			<td>{{leaderboard.Username}}</td>
+    			<td>{{leaderboard.HighestScore}}</td>
+  		    </tr>
+
+
+		</table>
+		</div>
+	</div>
+	<div id = 'game_area'>
 			<img id = 'player' src = "sprites/player.png">
 			<img id = 'player2' src = "sprites/player2.png">
 		</div>
-
-		  </div>
 		<script type = "text/javascript" src = "scripts/script2.js"></script>
 	</body>
 </html>
